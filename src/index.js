@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect } from 'react';
+import { useCallback, useEffect, useLayoutEffect } from 'react';
 
 const useToggleEventListner = ({ type, handleEvent, targets, option }) => {
   const add = useCallback(() => {
@@ -12,11 +12,18 @@ const useToggleEventListner = ({ type, handleEvent, targets, option }) => {
       target.removeEventListener((type, handleEvent, option || false));
     });
   }, [type, handleEvent, targets]);
+
+  const saveHandleEvent = useRef();
+
+  useEffect(() => {
+    saveHandleEvent.current = handleEvent;
+  }, []);
+
   useLayoutEffect(() => {
     add();
 
     return remove;
-  }, [third]);
+  }, [add, remove]);
 };
 
 export default useToggleEventListner;
