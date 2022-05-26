@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const useToggleEventListner = ({ type, handleEvent, targets, option }) => {
   const add = useCallback(() => {

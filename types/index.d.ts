@@ -3,9 +3,9 @@ type Options = Pick<AddEventListenerOptions, 'capture', 'passive', 'once'>;
 type Target = HTMLElement | Document | Window | null;
 
 declare function useToggleEventListener<
-  K extends keyof (HTMLElementEventMap & DocumentEventMap & WindowEventMap)
+  T extends keyof (HTMLElementEventMap & DocumentEventMap & WindowEventMap)
 >(
-  type: K,
+  type: T,
   handleEvent: (
     event: (HTMLElementEventMap & DocumentEventMap & WindowEventMap)[K]
   ) => void,
