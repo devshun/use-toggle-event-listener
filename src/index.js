@@ -13,15 +13,8 @@ const useToggleEventListner = ({ type, handleEvent, targets, option }) => {
     });
   }, [type, handleEvent, targets]);
 
-  const saveHandleEvent = useRef();
-
   useEffect(() => {
-    saveHandleEvent.current = handleEvent;
-  }, []);
-
-  useLayoutEffect(() => {
     add();
-
     return remove;
   }, [add, remove]);
 };
