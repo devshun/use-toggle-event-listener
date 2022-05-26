@@ -1,10 +1,17 @@
 type Options = Pick<AddEventListenerOptions, 'capture', 'passive', 'once'>;
 
-declare function useToggleEventListener<T extends keyof HTMLElementEventMap>(
-  type: T,
-  handleEvent: HTMLElementEventMap[T],
-  targets: HTMLElement[],
+type Target = HTMLElement | Document | Window | null;
+
+declare function useToggleEventListener<
+  K extends keyof (HTMLElementEventMap & DocumentEventMap & WindowEventMap)
+>(
+  type: K,
+  handleEvent: (
+    event: (HTMLElementEventMap & DocumentEventMap & WindowEventMap)[K]
+  ) => void,
+  targets?: Target[],
   options?: Options
 ): void;
 
-
+export as namespace useToggleEventListener;
+export default useToggleEventListener;
